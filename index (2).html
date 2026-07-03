@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickBooks - Smart Accounting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navbar -->
+    <nav class="bg-white border-b sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-2">
+                    <span class="text-3xl font-bold text-emerald-600">quickbooks</span>
+                </div>
+                <div class="hidden md:flex gap-6 text-sm font-medium">
+                    <a href="#" onclick="showSection('home')" class="hover:text-emerald-600">Home</a>
+                    <a href="#" onclick="showSection('dashboard')" class="hover:text-emerald-600">Dashboard</a>
+                    <a href="#" onclick="showSection('invoices')" class="hover:text-emerald-600">Invoices</a>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <button onclick="showLoginModal()" id="login-btn" class="font-medium">Log in</button>
+                <button onclick="showNewInvoice()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-full font-medium">New Invoice</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HOME SECTION -->
+    <section id="home-section" class="section">
+        <div class="bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-20">
+            <div class="max-w-5xl mx-auto px-6 text-center">
+                <h1 class="text-5xl font-bold mb-6">Smart Accounting for Your Business</h1>
+                <p class="text-xl">Track expenses, send invoices, and gain financial insights.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DASHBOARD SECTION -->
+    <section id="dashboard-section" class="section hidden max-w-7xl mx-auto px-6 py-12">
+        <h2 class="text-3xl font-bold mb-8">Financial Overview</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-3xl p-8 shadow">
+                <p class="text-gray-500">Total Income</p>
+                <p id="income" class="text-4xl font-bold text-emerald-600 mt-2">₹248,750</p>
+            </div>
+            <div class="bg-white rounded-3xl p-8 shadow">
+                <p class="text-gray-500">Total Expenses</p>
+                <p id="expenses" class="text-4xl font-bold text-red-600 mt-2">₹89,420</p>
+            </div>
+            <div class="bg-white rounded-3xl p-8 shadow">
+                <p class="text-gray-500">Net Profit</p>
+                <p id="profit" class="text-4xl font-bold text-emerald-600 mt-2">₹159,330</p>
+            </div>
+        </div>
+
+        <h3 class="font-semibold text-xl mt-12 mb-6">Recent Transactions</h3>
+        <div id="recent-transactions" class="bg-white rounded-3xl shadow divide-y"></div>
+    </section>
+
+    <!-- INVOICES SECTION -->
+    <section id="invoices-section" class="section hidden max-w-7xl mx-auto px-6 py-12">
+        <h2 class="text-3xl font-bold mb-8">Invoices</h2>
+        <button onclick="showNewInvoice()" class="bg-emerald-600 text-white px-6 py-3 rounded-2xl mb-8">Create New Invoice</button>
+        <div id="invoice-list" class="space-y-4"></div>
+    </section>
+
+    <!-- New Invoice Modal -->
+    <div id="new-invoice-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+        <div class="bg-white rounded-3xl max-w-md w-full mx-4 p-8">
+            <h2 class="text-2xl font-bold mb-6">Create Invoice</h2>
+            <input id="invoice-to" type="text" placeholder="Client Name" class="w-full p-4 border rounded-2xl mb-4">
+            <input id="invoice-amount" type="number" placeholder="Amount (₹)" class="w-full p-4 border rounded-2xl mb-6">
+            <button onclick="createInvoice()" class="w-full bg-emerald-600 text-white py-4 rounded-2xl font-semibold">Send Invoice</button>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+        <div class="bg-white rounded-3xl p-8 max-w-sm w-full mx-4">
+            <h2 class="text-2xl font-bold mb-6">Welcome to QuickBooks</h2>
+            <input id="login-email" type="text" placeholder="Email" class="w-full p-4 border rounded-2xl mb-4">
+            <button onclick="login()" class="w-full bg-emerald-600 text-white py-4 rounded-2xl font-semibold">Sign In</button>
+            <p onclick="closeLoginModal()" class="text-center mt-6 text-emerald-600 cursor-pointer">Close</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
